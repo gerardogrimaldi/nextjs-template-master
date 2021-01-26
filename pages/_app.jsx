@@ -25,6 +25,7 @@ import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import SportsSoccerIcon from '@material-ui/icons/SportsSoccer';
 import HomeIcon from '@material-ui/icons/Home';
 
+import SearchBox from "../components/search-box";
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
@@ -150,7 +151,7 @@ export default function MyApp(props) {
               <Typography className={classes.title} variant="h6" noWrap>
                 DODICI
               </Typography>
-              {/*<SearchBox></SearchBox>*/}
+              <SearchBox></SearchBox>
             </Toolbar>
           </AppBar>
           <Drawer

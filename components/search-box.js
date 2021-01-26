@@ -6,15 +6,15 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import {fade} from "@material-ui/core";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from '@material-ui/icons/Search';
-import algoliasearch from 'algoliasearch/lite';
+// import algoliasearch from 'algoliasearch/lite';
 import Link from 'next/link'
 
-const searchClient = algoliasearch(
+/*const searchClient = algoliasearch(
   'BFUPPVYGI0',
   '1281fe88faa993467724d6e1ea2dd5ef'
-);
+);*/
 
-const index = searchClient.initIndex('videos');
+// const index = searchClient.initIndex('videos');
 
 const useStyles = makeStyles((theme) => ({
   search: {
