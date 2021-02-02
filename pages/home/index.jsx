@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
@@ -8,6 +8,7 @@ import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import { DataGrid } from '@material-ui/data-grid';
 import { ButtonGroup } from "@material-ui/core";
+import {useCurrentUser} from "@/hooks/user";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -72,6 +73,14 @@ const rows = [
 
 export default function Home(home) {
   const classes = useStyles();
+  const [user, { mutate }] = useCurrentUser();
+
+  useEffect(() => {
+    // redirect to home if user is authenticated
+    if (user) router.push('/');
+  }, [user]);
+
+
   return (
     <React.Fragment>
       <CssBaseline />

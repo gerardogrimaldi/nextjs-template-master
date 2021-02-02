@@ -24,12 +24,16 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import SportsSoccerIcon from '@material-ui/icons/SportsSoccer';
 import HomeIcon from '@material-ui/icons/Home';
+import UnarchiveIcon from '@material-ui/icons/Unarchive';
 
 import SearchBox from "../components/search-box";
+import Button from "@material-ui/core/Button";
+import {useCurrentUser} from "@/hooks/user";
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
   const router = useRouter();
+  const [user, { mutate }] = useCurrentUser();
 
   const drawerWidth = 240;
 
@@ -37,6 +41,9 @@ export default function MyApp(props) {
     root: {
       display: 'flex',
       flexGrow: 1,
+    },
+    buttons: {
+      margin: theme.spacing(1),
     },
     appBar: {
       transition: theme.transitions.create(['margin', 'width'], {
@@ -91,7 +98,7 @@ export default function MyApp(props) {
     },
     title: {
       flexGrow: 1,
-      display: "none",
+      /*display: "none",*/
       [theme.breakpoints.up("sm")]: {
         display: "block"
       }
@@ -122,6 +129,16 @@ export default function MyApp(props) {
     }
   }, []);
 
+  const handleLogout = async () => {
+    await fetch('/api/auth', {
+      method: 'DELETE',
+    });
+    mutate(null);
+
+    router.push(`/signin`);
+
+  };
+
   return (
     <React.Fragment>
       <Head>
@@ -151,7 +168,28 @@ export default function MyApp(props) {
               <Typography className={classes.title} variant="h6" noWrap>
                 DODICI
               </Typography>
-              <SearchBox></SearchBox>
+              {/*<SearchBox></SearchBox>*/}
+              <div>
+                 {!user ? (
+                   <div>
+                     <Button className={classes.buttons} variant="contained" onClick={() => router.push(`/`)}>
+                       Iniciar sesi&oacute;n
+                     </Button>
+                     {/*<Button className={classes.buttons} variant="contained" onClick={() => router.push(`/signup`)}>
+                       Sign up
+                     </Button>*/}
+                   </div>
+                 ) : (
+                   <div>
+                    <Button className={classes.buttons} variant="contained" onClick={() => router.push(`/user/${user._id}`)}>
+                      Profile
+                     </Button>
+                     <Button className={classes.buttons} variant="contained" onClick={handleLogout}>
+                      Cerrar Sesi&oacute;n
+                     </Button>
+                   </div>
+                 )}
+              </div>
             </Toolbar>
           </AppBar>
           <Drawer
@@ -178,25 +216,32 @@ export default function MyApp(props) {
                 <ListItemText primary={'Home'} />
               </ListItem>
               <ListItem button key={1}
-                        onClick={() => router.push('/request')}>
+                        onClick={() => router.push('/requests')}>
                 <ListItemIcon>
                   <InboxIcon />
                 </ListItemIcon>
-                <ListItemText primary={'Pedido'} />
+                <ListItemText primary={'Pedidos'} />
               </ListItem>
               <ListItem button key={2}
-                        onClick={() => router.push('/player')}>
+                        onClick={() => router.push('/players')}>
                 <ListItemIcon>
                   <DirectionsRunIcon />
                 </ListItemIcon>
-                <ListItemText primary={'Jugador'} />
+                <ListItemText primary={'Jugadores'} />
               </ListItem>
               <ListItem button key={3}
-                        onClick={() => router.push('/club')}>
+                        onClick={() => router.push('/clubs')}>
                 <ListItemIcon>
                   <SportsSoccerIcon />
                 </ListItemIcon>
                 <ListItemText primary={'Clubes'} />
+              </ListItem>
+              <ListItem button key={4}
+                        onClick={() => router.push('/offerings')}>
+                <ListItemIcon>
+                  <UnarchiveIcon />
+                </ListItemIcon>
+                <ListItemText primary={'Ofrecidos'} />
               </ListItem>
             </List>
             <Divider />

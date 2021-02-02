@@ -4,6 +4,8 @@ import nc from 'next-connect';
 import Router from 'next/router';
 import { database } from '@/middlewares/index';
 import { findTokenByIdAndType } from '@/db/index';
+import Container from "@material-ui/core/Container";
+import {CssBaseline} from "@material-ui/core";
 
 const ResetPasswordTokenPage = ({ valid, token }) => {
   async function handleSubmit(event) {
@@ -23,10 +25,11 @@ const ResetPasswordTokenPage = ({ valid, token }) => {
   }
 
   return (
-    <>
+    <Container component="main" maxWidth="xs">
       <Head>
-        <title>Forget password</title>
+        <title>Has olvidado tu contrase&ntilde;a</title>
       </Head>
+      <CssBaseline />
       <style jsx>
         {`
         p {
@@ -34,10 +37,10 @@ const ResetPasswordTokenPage = ({ valid, token }) => {
         }
       `}
       </style>
-      <h2>Forget password</h2>
+      <h2>Has olvidado tu contrase&ntilde;a</h2>
       {valid ? (
         <>
-          <p>Enter your new password.</p>
+          <p>Ingrese su nueva contrase&ntilde;a.</p>
           <form onSubmit={handleSubmit}>
             <div>
               <input
@@ -46,13 +49,13 @@ const ResetPasswordTokenPage = ({ valid, token }) => {
                 placeholder="New password"
               />
             </div>
-            <button type="submit">Set new password</button>
+            <button type="submit">Cambiar contrase&ntilde;a</button>
           </form>
         </>
       ) : (
         <p>This link may have been expired</p>
       )}
-    </>
+    </Container>
   );
 };
 

@@ -17,3 +17,4 @@ handler.delete((req, res) => {
 });
 
 export default handler;
+
