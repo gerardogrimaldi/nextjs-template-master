@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { useCurrentUser } from '@/hooks/index';
 import {
   Checkbox, CssBaseline, FormControlLabel, TextField,
@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import Container from "@material-ui/core/Container";
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -40,8 +40,10 @@ const SignupPage = () => {
   const [user, { mutate }] = useCurrentUser();
   const [errorMsg, setErrorMsg] = useState('');
   useEffect(() => {
+    debugger;
+
     // redirect to home if user is authenticated
-    if (user) Router.replace('/');
+    if (!user) router.replace('/');
   }, [user]);
 
   async function onSubmit(e) {

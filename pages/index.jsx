@@ -40,10 +40,9 @@ export default function LoginPage() {
   const router = useRouter();
   const [errorMsg, setErrorMsg] = useState('');
   const [user, { mutate }] = useCurrentUser();
-
   useEffect(() => {
     // redirect to home if user is authenticated
-    if (user) router.push('/home');
+    if (user) router.replace('/home');
   }, [user]);
 
   async function onSubmit(e) {

@@ -19,7 +19,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Footer from "../components/footer";
-import { useRouter } from 'next/router'
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import SportsSoccerIcon from '@material-ui/icons/SportsSoccer';
@@ -29,11 +28,12 @@ import UnarchiveIcon from '@material-ui/icons/Unarchive';
 import SearchBox from "../components/search-box";
 import Button from "@material-ui/core/Button";
 import {useCurrentUser} from "@/hooks/user";
+import { useRouter } from "next/router";
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
-  const router = useRouter();
   const [user, { mutate }] = useCurrentUser();
+  const router = useRouter();
 
   const drawerWidth = 240;
 
@@ -135,7 +135,7 @@ export default function MyApp(props) {
     });
     mutate(null);
 
-    router.push(`/signin`);
+    router.push(`/`);
 
   };
 
@@ -263,20 +263,8 @@ export default function MyApp(props) {
             <Component {...pageProps} />
           </main>
         </div>
-        <Footer/>
+        {/*<Footer/>*/}
       </ThemeProvider>
-
-      {/*<Layout>
-        <Head>
-          <title>Next.js + MongoDB App</title>
-          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-      </Head>
-      <ThemeProvider theme={theme}>
-         CssBaseline kickstart an elegant, consistent, and simple baseline to build upon.
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
-      </Layout>*/}
     </React.Fragment>
   );
 }

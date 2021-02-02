@@ -9,6 +9,7 @@ import Link from '@material-ui/core/Link';
 import { DataGrid } from '@material-ui/data-grid';
 import { ButtonGroup } from "@material-ui/core";
 import {useCurrentUser} from "@/hooks/user";
+import {useRouter} from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -74,10 +75,11 @@ const rows = [
 export default function Home(home) {
   const classes = useStyles();
   const [user, { mutate }] = useCurrentUser();
-
+  const router = useRouter();
   useEffect(() => {
     // redirect to home if user is authenticated
-    if (user) router.push('/');
+    debugger;
+    if (!user) router.push('/');
   }, [user]);
 
 
