@@ -40,8 +40,6 @@ const SignupPage = () => {
   const [user, { mutate }] = useCurrentUser();
   const [errorMsg, setErrorMsg] = useState('');
   useEffect(() => {
-    debugger;
-
     // redirect to home if user is authenticated
     if (!user) router.replace('/');
   }, [user]);
@@ -150,11 +148,6 @@ const SignupPage = () => {
             <Grid item xs>
               <Link href="/forget-password" variant="body2">
                 Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="/forget-password" variant="body2">
-                Don&apos;t have an account? Sign Up
               </Link>
             </Grid>
           </Grid>

@@ -134,7 +134,7 @@ export default function MyApp(props) {
       method: 'DELETE',
     });
     mutate(null);
-    router.push(`/`);
+    await router.push(`/`);
   };
 
   return (

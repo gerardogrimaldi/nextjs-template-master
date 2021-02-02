@@ -78,7 +78,6 @@ export default function Home(home) {
   const router = useRouter();
   useEffect(() => {
     // redirect to home if user is authenticated
-    debugger;
     if (!user) router.push('/');
   }, [user]);
 
