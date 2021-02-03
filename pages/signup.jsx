@@ -41,7 +41,7 @@ const SignupPage = () => {
   const [errorMsg, setErrorMsg] = useState('');
   useEffect(() => {
     // redirect to home if user is authenticated
-    if (!user) router.replace('/');
+    if (user) router.replace('/');
   }, [user]);
 
   async function onSubmit(e) {
