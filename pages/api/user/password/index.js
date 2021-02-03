@@ -7,10 +7,10 @@ const handler = nc();
 handler.use(all);
 
 handler.put(async (req, res) => {
-  if (!req.user) { res.json(401).send('you need to be authenticated'); return; }
+  if (!req.user) { res.json(401).send('Necesitas autenticarte.'); return; }
   const { oldPassword, newPassword } = req.body;
   if (!(await bcrypt.compare(oldPassword, req.user.password))) {
-    res.status(401).send('The password you has entered is incorrect.');
+    res.status(401).send('El password ingresado es incorrecto.');
   }
   const password = await bcrypt.hash(newPassword, 10);
 

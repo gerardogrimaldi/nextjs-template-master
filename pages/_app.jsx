@@ -52,7 +52,7 @@ export default function MyApp(props) {
       }),
     },
     appBarShift: {
-      width: `calc(100% - ${drawerWidth}px)`,
+      /*width: `calc(100% - ${drawerWidth}px)`,*/
       marginLeft: drawerWidth,
       transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.easeOut,
@@ -66,7 +66,7 @@ export default function MyApp(props) {
       display: 'none',
     },
     drawer: {
-      width: drawerWidth,
+      /*width: drawerWidth,*/
       flexShrink: 0,
     },
     drawerPaper: {
@@ -77,7 +77,7 @@ export default function MyApp(props) {
       alignItems: 'center',
       padding: theme.spacing(0),
       // necessary for content to be below app bar
-      ...theme.mixins.toolbar,
+      /*...theme.mixins.toolbar,*/
       justifyContent: 'flex-end',
     },
     content: {
@@ -87,7 +87,7 @@ export default function MyApp(props) {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
-      marginLeft: -drawerWidth,
+      /*marginLeft: -drawerWidth,*/
     },
     contentShift: {
       transition: theme.transitions.create('margin', {
